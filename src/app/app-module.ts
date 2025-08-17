@@ -9,6 +9,8 @@ import { LoginComponent } from './features/login-component/login-component';
 import { CartComponent } from './features/cart-component/cart-component';
 import { ProductListComponent } from './features/product-list-component/product-list-component';
 import { ProductDetailComponent } from './features/product-detail-component/product-detail-component';
+import { provideHttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { ProductDetailComponent } from './features/product-detail-component/prod
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient()
   ],
   bootstrap: [App]
 })

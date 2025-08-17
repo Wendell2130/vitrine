@@ -1,1 +1,26 @@
-<p>navbar-component works!</p>
+<nav>
+    <div class="line-one">
+        <span>Vitrine E-Commerce</span>
+           
+         @if(authService.isLoggedIn()){
+        <a routerLink="admin">Admin Area</a>
+        <a routerLink="cart">Cart</a>
+        <a routerLink="login" (click)="logout()">logout</a>
+        }@else{
+        <a routerLink="login">Login</a>
+        }
+    </div>
+    <div class="line-two">
+        <a routerLink="home">Home</a>
+        <a routerLink="/eletronic">electronics</a>
+        <a routerLink="/jewelery">jewelery</a>
+        <a routerLink="/mens-clothing">men's clothing</a>
+        <a routerLink="/womens-clothing">women's clothing</a>
+
+
+       
+    </div>
+
+
+
+</nav>

@@ -1,0 +1,13 @@
+nav{
+  display: flex;
+  flex-direction: column;
+  border:1px dashed blue;
+}
+.line-one{
+  display: flex;
+  justify-content: space-between;
+}
+.line-two{
+  display: flex;
+  justify-content: space-evenly;
+}

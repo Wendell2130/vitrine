@@ -1,1 +1,26 @@
-<p>login-component works!</p>
+<form [formGroup]="loginForm">
+  
+
+  <div class="container">
+    <label ><b>Username</b>
+    <input type="text" formControlName="name" >
+    </label>
+    
+
+    <label ><b>Password</b>
+        <input type="password" formControlName="password" >
+    </label>
+    
+
+    <button type="button" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+   
+  </div>
+
+  <div class="container" >
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+<p>{{loginForm.value | json}}</p>
+<p>{{loginForm.valid}}</p>
+<p>islogged:{{authService.isLoggedIn()}}</p>

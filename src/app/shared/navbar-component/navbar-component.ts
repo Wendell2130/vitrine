@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Renderer2 } from '@angular/core';
+import { AuthService } from '../../core/services/auth-service';
 
 @Component({
   selector: 'app-navbar-component',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar-component.scss'
 })
 export class NavbarComponent {
-
+  public authService=inject(AuthService);
+  
+  logout(){
+    this.authService.logout();
+  }
 }

@@ -1,0 +1,73 @@
+form {
+  border: 3px solid #f1f1f1;
+  border-radius: 25px;
+  max-width: 500px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+button {
+  background-color: #1504aa;
+  border-radius: 25px;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 70%;
+}
+
+
+button:hover {
+  opacity: 0.8;
+}
+button:disabled {
+  background-color: #cccccc; /* Uma cor mais clara para o background */
+  color: #666666; /* Uma cor mais escura para o texto */
+  cursor: not-allowed; /* Altera o cursor para indicar que não é clicável */
+  opacity: 0.7; /* Diminui a opacidade */
+}
+
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #9c2828;
+}
+
+
+
+
+
+
+
+.container {
+  padding: 16px;
+}
+
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 40%;
+  }
+}

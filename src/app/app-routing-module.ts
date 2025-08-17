@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductListComponent } from './features/product-list-component/product-list-component';
+import { LoginComponent } from './features/login-component/login-component';
+import { ProductDetailComponent } from './features/product-detail-component/product-detail-component';
+
+import { CartComponent } from './features/cart-component/cart-component';
+import { AdminComponent } from './features/admin/admin-component/admin-component';
 
 const routes: Routes = [
-  { path: 'home' },
-  { path: 'login' },
-  { path: 'product/:id' },
-  { path: 'cart' },
-  { path: 'admin' }
+  { path: 'home',component:ProductListComponent},
+   { path: 'categories/:category',component:ProductListComponent},
+  { path: 'login',component:LoginComponent },
+  { path: 'product/:id',component:ProductDetailComponent },
+  { path: 'cart',component:CartComponent },
+  { path: 'admin',component:AdminComponent}
 ];
 
 @NgModule({
