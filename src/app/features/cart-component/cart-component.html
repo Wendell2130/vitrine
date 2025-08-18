@@ -1,1 +1,9 @@
-<p>cart-component works!</p>
+<p>cart</p>
+
+@for(cart of cartsByUser$ | async;track cart.id){
+    <p>{{cart.date}} </p>
+    
+@for(product of cart.products;track product.productId){
+        <p>{{product.productId}}--{{product.quantity}}</p>
+    }
+}

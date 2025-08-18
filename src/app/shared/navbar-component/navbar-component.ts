@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, inject, Renderer2 } from '@angular/core';
+import { Component, inject, } from '@angular/core';
 import { AuthService } from '../../core/services/auth-service';
 
 @Component({

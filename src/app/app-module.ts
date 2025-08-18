@@ -9,8 +9,9 @@ import { LoginComponent } from './features/login-component/login-component';
 import { CartComponent } from './features/cart-component/cart-component';
 import { ProductListComponent } from './features/product-list-component/product-list-component';
 import { ProductDetailComponent } from './features/product-detail-component/product-detail-component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { httpInterceptor } from './core/interceptors/http-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient()
+    provideHttpClient(withInterceptors([httpInterceptor]))
   ],
   bootstrap: [App]
 })

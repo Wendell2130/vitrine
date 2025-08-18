@@ -22,7 +22,7 @@ export class LoginComponent {
     const username=this.loginForm.value.name??'';
     const password=this.loginForm.value.password??'';
     this.authService.login(username,password).subscribe((token)=>{
-      console.log(token)
+      // console.log(token)
       
     });
   }

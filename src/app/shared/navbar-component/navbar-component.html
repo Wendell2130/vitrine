@@ -1,7 +1,7 @@
 <nav>
     <div class="line-one">
         <span>Vitrine E-Commerce</span>
-           
+           <span>{{authService.currentUser()?.name?.firstname}}</span>
          @if(authService.isLoggedIn()){
         <a routerLink="admin">Admin Area</a>
         <a routerLink="cart">Cart</a>

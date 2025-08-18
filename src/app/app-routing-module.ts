@@ -6,14 +6,16 @@ import { ProductDetailComponent } from './features/product-detail-component/prod
 
 import { CartComponent } from './features/cart-component/cart-component';
 import { AdminComponent } from './features/admin/admin-component/admin-component';
+import { authGuard } from './core/guards/auth-guard';
 
 const routes: Routes = [
+    { path: '',redirectTo:'home',pathMatch:'full'},
   { path: 'home',component:ProductListComponent},
    { path: 'categories/:category',component:ProductListComponent},
   { path: 'login',component:LoginComponent },
   { path: 'product/:id',component:ProductDetailComponent },
   { path: 'cart',component:CartComponent },
-  { path: 'admin',component:AdminComponent}
+  { path: 'admin',component:AdminComponent,canActivate:[authGuard]}
 ];
 
 @NgModule({
