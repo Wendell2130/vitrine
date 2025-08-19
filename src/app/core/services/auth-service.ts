@@ -14,59 +14,58 @@ export class AuthService {
   public currentUser = this._currentUser.asReadonly();
   public isLoggedIn = this._isLoggedIn.asReadonly();
 
-  private _router=inject(Router)
+  private _router = inject(Router)
   private _http = inject(HttpClient);
 
   constructor() {
 
   }
- 
-  login(username: string, password: string): Observable<{ token: string} | null> {
-    return this._http.get<Iuser[]>(URL_USERS).pipe(
-      map((users)=> users.find(u=>u.username==username && u.password==password) || null),
-      
-      switchMap((user)=>{
-          if (!user) {
+
+  login(username: string, password: string): Observable<{ token: string } | null> {
+    return this._http.get<Iuser[]>(URL_USERS).pipe( //procura o usuario e seta o estado global
+      map((users) => users.find(u => u.username == username && u.password == password) || null),
+      switchMap((user) => {
+        if (!user) {
           alert('Usuário não encontrado');
           return of(null);
         }
         this._currentUser.set(user);
-        // 2. Faz o login para pegar o token
+        // POST Faz o login para pegar o token
         return this._http.post<{ token: string }>(URL_TOKEN, { username, password }).
-        pipe(
-          map(resp => {
-            if (resp && resp.token) {
-             
-              localStorage.setItem("token", resp.token);
-            
-              this._isLoggedIn.set(true);
-              this._router.navigate(['/home']);
+          pipe(
+            map(resp => {
+              if (resp && resp.token) {
 
-              return { token: resp.token };
-            }
-            return null;
-          }))
+                localStorage.setItem("token", resp.token);
+
+                this._isLoggedIn.set(true);
+                this._router.navigate(['/home']);
+
+                return { token: resp.token };
+              }
+              return null;
+            }), catchError((error) => {
+              alert('Usuário ou senha não recohecido(s)');
+              this._isLoggedIn.set(false);
+              localStorage.removeItem("userToken");
+              return of(null);
+            }))
       }
 
       ));
-    
 
-      // }), catchError((error) => {
-      //   alert('Usuário ou senha não recohecido(s)');
-      //   this._isLoggedIn.set(false);
-      //   localStorage.removeItem("userToken");
-      //   return of(null);
-      // })
-      // );
+
+
   }
 
   logout() {
-    const confirmed=confirm("Deseja realmente sair?");
-    if(confirmed){
+    const confirmed = confirm("Deseja realmente sair?");
+    if (confirmed) {
       this._isLoggedIn.set(false);
-      localStorage.removeItem("userToken");
-       this._router.navigate(['/login']);
+      this._currentUser.set(null);
+      localStorage.removeItem("token");
+      this._router.navigate(['/login']);
     }
-    
+
   }
 }
