@@ -3,7 +3,7 @@ export interface CartView {
     userId: number
     date: string
     products: ProductView[]
-    totalBuy: number
+    
 }
 export interface ProductView {
     productId: number

@@ -3,11 +3,11 @@
         <span>Vitrine E-Commerce</span>
            <span>{{authService.currentUser()?.name?.firstname}}</span>
          @if(authService.isLoggedIn()){
-        <a routerLink="admin">Admin Area</a>
-        <a routerLink="cart">Cart</a>
-        <a routerLink="login" (click)="logout()">logout</a>
+        <a routerLink="admin"><i class="material-icons">manage_accounts</i></a>
+        <a routerLink="cart"><i class="material-icons">shopping_cart</i></a>
+        <a routerLink="login" (click)="logout()"><i class="material-icons">logout</i></a>
         }@else{
-        <a routerLink="login">Login</a>
+        <a routerLink="login"><i class="material-icons">login</i></a>
         }
     </div>
     <div class="line-two">
