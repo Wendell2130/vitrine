@@ -2,12 +2,32 @@
   
   <div class="cart-title">Carrinho atual</div>
   @for(product of cartService.productsInCart();track product.id){
-    <p>{{product.id}}--{{product.title.slice(5)}}--{{product.quantity}} <button (click)="addOne(product.id)">+</button></p>
-   
+    <div class="product-item">
+      <div class="product-info">
+        <img [src]="product.image" alt="{{product.title}}" >
+           {{product.title.slice(0,10)}}... Quantidade:<strong> {{product.quantity}}</strong> Unidade:<strong>R$ {{product.price}}</strong>
+      </div>
+      <div class="actions">
+        <button class="add" (click)="addOne(product.id)"><i class="material-icons">add</i></button>
+       <button class="subtract"(click)="subtractOne(product.id)"><i class="material-icons">remove</i></button>
+       <button class="remove"(click)="removeProduct(product.id)"><i class="material-icons">delete</i></button>
+      </div>
+      
+       
+    </div>
   }@empty {
     <div class="empty-cart">Nenhum produto no carrinho.</div>
   }
-
+  <div class="cart-total">
+   Total: R$ {{cartTotal}} 
+   </div>
+   @if(cartService.productsInCart().length > 0){
+    <div class="checkout">
+    <button >Finalizar Compra</button>
+   </div>
+   }
+   
+  
   <hr>
 
   <div class="cart-title">Histórico de Compras</div>
@@ -18,7 +38,8 @@
     @for(product of cart.products;track product.productId){
       <div class="product-item">
         <div class="product-info">
-          <span>Foto:</span> {{product.productId}}
+        
+          <img [src]="product.image" alt="{{product.title}}" style="height:32px;vertical-align:middle;margin-right:8px;">
         </div>
         <div class="product-info">
           <span>Nome:</span> {{product.title}}

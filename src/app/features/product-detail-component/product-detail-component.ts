@@ -3,9 +3,9 @@ import { ProductService } from '../../core/services/product-service';
 import { Iproduct } from '../../models/product-interface';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../core/services/cart-service';
-import { Icart } from '../../models/cart-interface';
+
 import { AuthService } from '../../core/services/auth-service';
-import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-product-detail-component',
@@ -36,15 +36,17 @@ export class ProductDetailComponent {
     this.cartService.productsInCart.update((products) => {
       const existingProduct = products.find(p => p.id === this.product?.id);
       if (existingProduct) {
-        alert('Product already in cart');
+        alert('Produto já está no carrinho');
         return products;
       } else if (this.product) {
         this.product.quantity = 1; // Adiciona a propriedade quantity
+         alert('Produto adicionado ao carrinho');
         return [...products, this.product];
+       
       }
       return products;
     });
-   console.log(this.cartService.productsInCart());
+  //  console.log(this.cartService.productsInCart());
 
   }
 

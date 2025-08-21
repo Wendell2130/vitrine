@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import {  inject, Injectable, signal } from '@angular/core';
 import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 import { Icart } from '../../models/cart-interface';
-import { ProductService } from './product-service';
+
 import { Iproduct } from '../../models/product-interface';
-import { CartView, ProductView } from '../../models/cart-view-intercface';
+import { CartView } from '../../models/cart-view-intercface';
+
 const URL = 'https://fakestoreapi.com/';
 @Injectable({
   providedIn: 'root'
@@ -12,29 +13,12 @@ const URL = 'https://fakestoreapi.com/';
 export class CartService {
 
   private _http = inject(HttpClient);
-  
   private _currentCart = signal<Icart | null>(null);
   public currentCart = this._currentCart.asReadonly();
   public productsInCart = signal<Iproduct[]>([]);
   
-
-  createCart(cart: Icart): Observable<Icart> {
-    return this._http.post<Icart>(URL + 'carts', cart);
-  }
-
-  getCartById(cartId: number): Observable<Icart> {
-    return this._http.get<Icart>(URL + 'carts/' + cartId);
-  }
-
-  updateCart(cartId: number, cart: Partial<Icart>): Observable<Icart> {
-    return this._http.put<Icart>(URL + 'carts/' + cartId, cart);
-  }
-
-  deleteCart(cartId: number): Observable<any> {
-    return this._http.delete(URL + 'carts/' + cartId);
-  }
-
-  //histórico de compras
+  
+   //histórico de compras
   getCartsViewByIdUser(userId: number): Observable<CartView[] | null> {
     return this._http.get<CartView[]>(URL + 'carts/user/' + userId).pipe(
       switchMap(carts => {
@@ -65,10 +49,5 @@ export class CartService {
   }
 
 
-  // addProductToCart(userId:number, productId: number): Observable<> {
-  //   return this._http.post(URL, {});
-  // }
-  removeProduct() {
-
-  }
+  
 }

@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart-service';
-import { Icart } from '../../models/cart-interface';
-import { map, Observable, of, switchMap } from 'rxjs';
+
+import { Observable, of } from 'rxjs';
 import { AuthService } from '../../core/services/auth-service';
-import { CartView, ProductView } from '../../models/cart-view-intercface';
+import { CartView } from '../../models/cart-view-intercface';
 import { ProductService } from '../../core/services/product-service';
-import { Iproduct } from '../../models/product-interface';
+
 
 @Component({
   selector: 'app-cart-component',
@@ -32,10 +32,13 @@ export class CartComponent {
     }
 
   }
-
+  get cartTotal(): string {
+    return this.cartService.productsInCart().reduce(
+      (sum, product) => sum + (product.price * (product.quantity ?? 1)), 0).toFixed(2);
+  }
   addOne(productId: number) {
     this.cartService.productsInCart.update((products) => {
-      return products.map((product)=>{
+      return products.map((product) => {
         if (product.id === productId) {
           return {
             ...product,
@@ -44,8 +47,33 @@ export class CartComponent {
         }
         return product;
       });
-      
+
 
     });
   }
+
+  subtractOne(productId: number) {
+    this.cartService.productsInCart.update((products) => {
+      return products.map((product) => {
+        if (product.id === productId && (product.quantity ?? 1) > 1) {
+          return {
+            ...product,
+            quantity: (product.quantity || 1) - 1
+          };
+        }
+        return product;
+      });
+    });
+  }
+
+  removeProduct(productId: number) {
+    const confirmation = confirm('Tem certeza que deseja remover este produto do carrinho?');
+    if (confirmation) {
+      this.cartService.productsInCart.update((products) => {
+        return products.filter(product => product.id !== productId);
+      });
+    }
+
+  }
+
 }
