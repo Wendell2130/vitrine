@@ -5,5 +5,6 @@ export interface Iproduct {
     description: string
     category: string
     image: string
+    quantity?: number; 
 }
 

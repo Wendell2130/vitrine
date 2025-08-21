@@ -1,15 +1,41 @@
-<p>cart</p>
+<div class="cart-container">
+  
+  <div class="cart-title">Carrinho atual</div>
+  @for(product of cartService.productsInCart();track product.id){
+    <p>{{product.id}}--{{product.title.slice(5)}}--{{product.quantity}} <button (click)="addOne(product.id)">+</button></p>
+   
+  }@empty {
+    <div class="empty-cart">Nenhum produto no carrinho.</div>
+  }
 
-<!-- @for(cart of carts ;track cart.id){
-    <p>data:{{cart.date}} </p>
-    
-@for(product of cart.products;track product.productId){
-        <p>Foto:{{product.productId}}--
-             Nome:{{product.title}}--
-             Quantidade{{product.quantity}}--
-                Preço:{{product.price}}--
-                Total:{{product.price * product.quantity}}
-            </p>
+  <hr>
+
+  <div class="cart-title">Histórico de Compras</div>
+
+  @for(cart of cartsView$ | async ;track cart.id){
+    <div class="cart-date">Data: {{cart.date | datestr}}</div>
+
+    @for(product of cart.products;track product.productId){
+      <div class="product-item">
+        <div class="product-info">
+          <span>Foto:</span> {{product.productId}}
+        </div>
+        <div class="product-info">
+          <span>Nome:</span> {{product.title}}
+        </div>
+        <div class="product-info">
+          <span>Quantidade:</span> {{product.quantity}}
+        </div>
+        <div class="product-info">
+          <span>Preço:</span> R$ {{product.price}}
+        </div>
+        <div class="product-total">
+          Total: R$ {{product.price * product.quantity}}
+        </div>
+      </div>
+    }@empty {
+      <div class="empty-cart">Nenhum produto no carrinho.</div>
     }
     <hr>
-} -->
+  }
+</div>

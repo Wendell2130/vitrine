@@ -2,12 +2,15 @@
 export interface Icart {
   id: number
   userId: number
-  date: string
-  products: ProductCart[]
-  __v: number
+  products: Iproduct[]
 }
 
-export interface ProductCart {
-  productId: number
-  quantity: number
+export interface Iproduct {
+  id: number
+  title: string
+  price: number
+  description: string
+  category: string
+  image: string
+  quantity?: number
 }

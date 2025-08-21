@@ -12,6 +12,7 @@ import { ProductDetailComponent } from './features/product-detail-component/prod
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptor } from './core/interceptors/http-interceptor';
+import { DatestrPipe } from './shared/pipes/datestr-pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { httpInterceptor } from './core/interceptors/http-interceptor';
     LoginComponent,
     CartComponent,
     ProductListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    DatestrPipe
   ],
   imports: [
     BrowserModule,
