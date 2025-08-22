@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ProductService } from '../../../core/services/product-service';
 
 @Component({
   selector: 'app-admin-component',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './admin-component.scss'
 })
 export class AdminComponent {
-
+  productsService = inject(ProductService);
 }

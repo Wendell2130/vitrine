@@ -9,15 +9,19 @@ import { AdminComponent } from './features/admin/admin-component/admin-component
 import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
 
+
 const routes: Routes = [
     { path: '',redirectTo:'home',pathMatch:'full'},
   { path: 'home',component:ProductListComponent},
-   { path: 'categories/:category',component:ProductListComponent},
+  
   { path: 'login',component:LoginComponent },
   { path: 'product/:id',component:ProductDetailComponent },
-  { path: 'cart',component:CartComponent,canActivate:[authGuard] },
-  { path: 'admin',component:AdminComponent,canActivate:[adminGuard]}
-];
+  { path: 'cart',component:CartComponent},
+  { path: 'admin',loadChildren: () => 
+    import('./features/admin/admin-module').then(m => m.AdminModule), 
+    canActivate:[adminGuard] },
+ 
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,1 +1,8 @@
-<p>admin-component works!</p>
+<app-navbar-admim-component></app-navbar-admim-component>
+
+@for(product of productsService.products() ; track product.id) {
+<p>{{product.title}}</p>
+
+}
+
+<router-outlet></router-outlet>
