@@ -1,1 +1,31 @@
-<p>table-product-component works!</p>
+<table class="admin-products-table">
+  <thead>
+    <tr>
+      <th>Imagem</th>
+      <th>Nome</th>
+      <th>Categoria</th>
+      <th>Preço</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(product of productsService.products(); track product.id) {
+      <tr>
+        <td>
+          <img [src]="product.image" alt="{{product.title}}" style="height:40px;">
+        </td>
+        <td>{{product.title}}</td>
+        <td>{{product.category}}</td>
+        <td>R$ {{product.price}}</td>
+        <td>
+          <button class="edit" (click)="editProduct(product.id)">
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="delete" (click)="deleteProduct(product.id)">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

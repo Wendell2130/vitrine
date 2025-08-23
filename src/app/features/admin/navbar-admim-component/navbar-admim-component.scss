@@ -33,7 +33,7 @@
     }
 
     button {
-      background: #27ae60;
+    
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -46,10 +46,21 @@
       gap: 0.5rem;
       transition: background 0.2s;
 
-      &:hover {
-        background: #219150;
-      }
+      
+      &.table {
+        background: #024069;
 
+        &:hover {
+          background: #55aee9;
+        }
+      } 
+      &.add {
+        background: #024069;
+
+        &:hover {
+          background: #55aee9;
+        }
+      } 
       .material-icons {
         font-size: 1.2em;
         vertical-align: middle;

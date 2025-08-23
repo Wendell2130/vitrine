@@ -2,11 +2,11 @@
   <span class="logo">Area Admin</span>
   <div class="add-product">
     <input type="text" placeholder="Nome do produto" [(ngModel)]="productName">
-    <button [routerLink]="['/admin/new']" class="add-btn">
-      <i class="material-icons">add_box</i> Adicionar Produto
-    </button>
-    <button [routerLink]="['/admin/table']" class="table-btn">
+    <button routerLink='table' class="table">
       <i class="material-icons">table_chart</i> Tabela
+    </button>
+    <button routerLink='new' class="add">
+      <i class="material-icons">add_box</i> Adicionar Produto
     </button>
   </div>
 </nav>

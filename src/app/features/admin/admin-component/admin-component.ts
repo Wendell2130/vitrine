@@ -8,5 +8,4 @@ import { ProductService } from '../../../core/services/product-service';
   styleUrl: './admin-component.scss'
 })
 export class AdminComponent {
-  productsService = inject(ProductService);
 }

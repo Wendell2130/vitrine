@@ -1,1 +1,34 @@
-<p>new-product-component works!</p>
+<div class="new-product-form">
+  <form [formGroup]="productForm" (ngSubmit)="submit()">
+    <div class="form-group title">
+        <h2>
+            @if(mode=='create'){Novo Produto}@else {Editar Produto}
+         @if(productForm.valid){ <i class="material-icons icon-check">check_circle</i>}
+        </h2>
+         
+    </div>
+   
+     <div class="form-group">
+      <label for="title">Nome</label>
+      <input id="title" type="text" formControlName="title" />
+    </div>
+    <div class="form-group">
+      <label for="price">Preço</label>
+      <input id="price" type="number" step="1" formControlName="price" />
+    </div>
+    <div class="form-group">
+      <label for="description">Descrição</label>
+      <textarea id="description" formControlName="description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="category">Categoria</label>
+      <input id="category" type="text" formControlName="category" />
+    </div>
+    <div class="form-group">
+      <label for="image">Imagem (URL)</label>
+      <input id="image" type="text" formControlName="image" />
+    </div>
+    <button type="submit" [disabled]="!productForm.valid">
+      <i class="material-icons">add_box</i> Cadastrar Produto
+    </button>
+  </form>

@@ -1,0 +1,93 @@
+.admin-products-table {
+  width: 100%;
+  max-width: 960px;
+  border-collapse: collapse;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(44, 62, 80, 0.10);
+  overflow: hidden;
+  font-family: 'Segoe UI', Arial, sans-serif;
+
+  thead {
+    background: linear-gradient(90deg, #2c3e50 0%, #2980b9 100%);
+    color: #fff;
+
+    th {
+      padding: 1rem 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: left;
+      border-bottom: 2px solid #2980b9;
+    }
+  }
+
+  tbody {
+    tr {
+      transition: background 0.2s;
+
+      &:hover {
+        background: #ecf0f1;
+      }
+    }
+
+    td {
+      padding: 0.8rem 0.5rem;
+      font-size: 1rem;
+      color: #34495e;
+      vertical-align: middle;
+      border-bottom: 1px solid #dfe6e9;
+
+      img {
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(44, 62, 80, 0.08);
+        background: #f8f9fa;
+        max-height: 40px;
+        max-width: 40px;
+        object-fit: contain;
+      }
+
+      button {
+        border: none;
+        border-radius: 4px;
+        padding: 0.3rem 0.8rem;
+        font-size: 1rem;
+        margin-right: 0.3rem;
+        margin-top: 0.3rem;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        box-shadow: 0 1px 4px rgba(44, 62, 80, 0.05);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+
+        &:active {
+          transform: scale(0.97);
+        }
+
+        &.edit {
+          background: #3498db;
+          color: #fff;
+
+          &:hover {
+            background: #217dbb;
+          }
+        }
+
+        &.delete {
+          background: #e74c3c;
+          color: #fff;
+
+          &:hover {
+            background: #c0392b;
+          }
+        }
+      }
+
+      .material-icons {
+        font-size: 1.2em;
+        vertical-align: middle;
+      }
+    }
+}
+}
