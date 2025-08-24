@@ -14,7 +14,7 @@ export class ProductService {
   public products=this._products.asReadonly();
 
   constructor() { 
-    this.getProducts();
+    this.getProducts().subscribe();
   }
 
   public getProducts():Observable<any[]>{

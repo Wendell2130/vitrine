@@ -3,7 +3,7 @@
         <input type="text" placeholder="pesquisar">
     </div>
     <div class="list">
-        @for(product of products$ |async;track product.id){
+        @for(product of productService.products();track product.id){
         <app-product-card-component 
         [id]="product.id"
         [title]="product.title" 

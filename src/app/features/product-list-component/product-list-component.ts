@@ -10,10 +10,8 @@ import { Observable, of } from 'rxjs';
   styleUrl: './product-list-component.scss'
 })
 export class ProductListComponent {
-  products$:Observable<Iproduct[]>=of([]);
+ 
   productService=inject(ProductService);
 
-  ngOnInit(){
-    this.products$=this.productService.getProducts();
-  }
+  
 }
