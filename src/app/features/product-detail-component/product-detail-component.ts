@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ProductService } from '../../core/services/product-service';
 import { Iproduct } from '../../models/product-interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../core/services/cart-service';
 
 import { AuthService } from '../../core/services/auth-service';
@@ -16,6 +16,7 @@ import { AuthService } from '../../core/services/auth-service';
 export class ProductDetailComponent {
   productService = inject(ProductService);
   private _route = inject(ActivatedRoute);
+  private _router = inject(Router);
   cartService = inject(CartService);
   authService = inject(AuthService);
   product: Iproduct | null = null;
@@ -46,8 +47,12 @@ export class ProductDetailComponent {
       }
       return products;
     });
-  //  console.log(this.cartService.productsInCart());
+  
 
+  }
+
+  goBack() {
+    this._router.navigate(['/home']);
   }
 
 }

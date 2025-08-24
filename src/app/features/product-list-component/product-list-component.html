@@ -1,9 +1,9 @@
 <div class="container">
     <div class="bar">
-        <input type="text" placeholder="pesquisar">
+        <input type="text" placeholder="Pesquisar..." (keyup)="filter($event)">
     </div>
     <div class="list">
-        @for(product of productService.products();track product.id){
+        @for(product of filteredProducts();track product.id){
         <app-product-card-component 
         [id]="product.id"
         [title]="product.title" 

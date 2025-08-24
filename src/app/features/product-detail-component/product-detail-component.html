@@ -10,9 +10,10 @@
         <p>{{product.price}}</p> <br>
         
         <p><button (click)="addToCart()">Adicionar <i class="material-icons">add_shopping_cart</i></button></p>
+        <p><button class="btn-back" (click)="goBack()"> <i class="material-icons">reply</i> Voltar</button></p>
     </div>
     }@else{
-        <p>Erro ao carregar produto</p>
+        <p>Carregando...</p>
     }
     
 
