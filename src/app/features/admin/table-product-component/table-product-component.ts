@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { ProductService } from '../../../core/services/product-service';
 import { Router } from '@angular/router';
+import { Iproduct } from '../../../models/product-interface';
 
 @Component({
   selector: 'app-table-product-component',
@@ -12,8 +13,25 @@ export class TableProductComponent {
 
   productsService = inject(ProductService);
   router = inject(Router);
+  filteredProducts:Signal<Iproduct[]> = signal([]);
 
+  ngOnInit(): void {
+    this.filteredProducts=computed(()=> //não muda o array original e usa sort
+      [...this.productsService.products()].sort((a,b)=>a.title.localeCompare(b.title)));
+  }
   
+  filterPerCategory(){
+    this.filteredProducts=computed(()=> //não muda o array original e usa sort
+      [...this.productsService.products()].sort((a,b)=>a.category.localeCompare(b.category)));
+  }
+    filterPerPrice(){
+    this.filteredProducts=computed(()=> //não muda o array original e usa sort
+      [...this.productsService.products()].sort((a, b) => a.price - b.price));
+  }
+    filterPerName(){
+    this.filteredProducts=computed(()=> //não muda o array original e usa sort
+      [...this.productsService.products()].sort((a,b)=>a.title.localeCompare(b.title)));
+  }
 
   editProduct(id: number) {
       this.router.navigate(['/admin/edit', id]);

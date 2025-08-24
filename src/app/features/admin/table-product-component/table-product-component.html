@@ -2,14 +2,14 @@
   <thead>
     <tr>
       <th>Imagem</th>
-      <th>Nome</th>
-      <th>Categoria</th>
-      <th>Preço</th>
+      <th><span class="btn-filter"(click)="filterPerName()">Name</span></th>
+      <th><span class="btn-filter"(click)="filterPerCategory()">Categoria</span></th>
+      <th><span class="btn-filter"(click)="filterPerPrice()">Preço</span></th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody>
-    @for(product of productsService.products(); track product.id) {
+    @for(product of filteredProducts(); track product.id) {
       <tr>
         <td>
           <img [src]="product.image" alt="{{product.title}}" style="height:40px;">
