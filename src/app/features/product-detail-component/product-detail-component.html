@@ -4,10 +4,10 @@
         <img [src]="product.image" >
     </div>
     <div class="content">
-        <h2>{{product.title}}</h2> <br>
-        <p>{{product.category}}</p> <br>
+        <h2>{{product.title |captalize}}</h2> <br>
+        <p>{{product.category | captalize}}</p> <br>
         <p>{{product.description}}</p> <br>
-        <p>{{product.price}}</p> <br>
+        <p>R$ {{product.price}}</p> <br>
         
         <p><button (click)="addToCart()">Adicionar <i class="material-icons">add_shopping_cart</i></button></p>
         <p><button class="btn-back" (click)="goBack()"> <i class="material-icons">reply</i> Voltar</button></p>

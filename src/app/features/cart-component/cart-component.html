@@ -1,6 +1,6 @@
 <div class="cart-container">
   
-  <div class="cart-title">Carrinho atual</div>
+  <div class="cart-title">Carrinho Atual</div>
   @for(product of cartService.productsInCart();track product.id){
     <div class="product-item">
       <div class="product-info">
@@ -19,7 +19,7 @@
     <div class="empty-cart">Nenhum produto no carrinho.</div>
   }
   <div class="cart-total">
-   Total: R$ {{cartTotal}} 
+   Total: R$ {{cartActualTotal}} 
    </div>
    @if(cartService.productsInCart().length > 0){
     <div class="checkout">
@@ -28,18 +28,18 @@
    }
    
   
-  <hr>
+  <hr> <br>
 
   <div class="cart-title">Histórico de Compras</div>
 
-  @for(cart of cartsView$ | async ;track cart.id){
+  @for(cart of cartsView$ | async ;track cart.id; let i = $index){
     <div class="cart-date">Data: {{cart.date | datestr}}</div>
-
+   
     @for(product of cart.products;track product.productId){
       <div class="product-item">
         <div class="product-info">
         
-          <img [src]="product.image" alt="{{product.title}}" style="height:32px;vertical-align:middle;margin-right:8px;">
+          <img [src]="product.image" alt="{{product.title}}" >
         </div>
         <div class="product-info">
           <span>Nome:</span> {{product.title}}
@@ -52,11 +52,17 @@
         </div>
         <div class="product-total">
           Total: R$ {{product.price * product.quantity}}
+          
         </div>
       </div>
     }@empty {
-      <div class="empty-cart">Nenhum produto no carrinho.</div>
+      <div class="empty-cart">Carregando.</div>
     }
-    <hr>
+    <div class="cart-total" >
+     Total da Compra: R$ {{getCartProductsTotal(cart).toFixed(2)}}
+   </div>
+   <hr>
+   
+    
   }
 </div>

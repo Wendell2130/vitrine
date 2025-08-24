@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CartService } from '../../core/services/cart-service';
 
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { AuthService } from '../../core/services/auth-service';
 import { CartView } from '../../models/cart-view-intercface';
 import { ProductService } from '../../core/services/product-service';
@@ -30,11 +30,16 @@ export class CartComponent {
     } else {
       alert('usuário não logado ao acessar o carrinho');
     }
-
+    
   }
-  get cartTotal(): string {
+
+  get cartActualTotal(): string {
     return this.cartService.productsInCart().reduce(
       (sum, product) => sum + (product.price * (product.quantity ?? 1)), 0).toFixed(2);
+  }
+  
+  getCartProductsTotal(cart:CartView): number {
+    return cart.products.reduce((sum, product) => sum + (product.price * (product.quantity ?? 1)), 0);
   }
   addOne(productId: number) {
     this.cartService.productsInCart.update((products) => {

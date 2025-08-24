@@ -8,6 +8,7 @@ import { CartComponent } from './features/cart-component/cart-component';
 import { AdminComponent } from './features/admin/admin-component/admin-component';
 import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
+import { About } from './features/about/about';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'login',component:LoginComponent },
   { path: 'product/:id',component:ProductDetailComponent },
   { path: 'cart',component:CartComponent},
+  { path: 'about',component:About },
   { path: 'admin',loadChildren: () => 
     import('./features/admin/admin-module').then(m => m.AdminModule), 
     canActivate:[adminGuard] },

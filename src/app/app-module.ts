@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptor } from './core/interceptors/http-interceptor';
 import { DatestrPipe } from './shared/pipes/datestr-pipe';
 import { Footer } from './features/footer/footer';
+import { About } from './features/about/about';
+import { CaptalizePipe } from './shared/pipes/captalize-pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { Footer } from './features/footer/footer';
     ProductListComponent,
     ProductDetailComponent,
     DatestrPipe,
-    Footer
+    Footer,
+    About,
+    CaptalizePipe
   ],
   imports: [
     BrowserModule,

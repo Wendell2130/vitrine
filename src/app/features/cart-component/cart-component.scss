@@ -41,16 +41,21 @@ img {
   font-weight: bold;
   color: #2c3e50;
   margin-bottom: 1rem;
-  text-align: left;
+  text-align: center;
 }
-
+.cart-date {
+  text-align: center;
+  margin: 20px;
+}
 .cart-total {
   font-size: 1.2rem;
   font-weight: bold;
   color: #27ae60;
   margin-top: 1rem;
   text-align: right;
+ margin-bottom: 10px;
 }
+
 
 .empty-cart {
   color: #7f8c8d;
@@ -79,4 +84,8 @@ button.subtract { background: #f1c40f; color: #2c3e50; &:hover { background: #f3
 button.remove { background: #e74c3c; color: #fff; &:hover { background: #c0392b; } }
 .checkout {
   margin: 10px;
+}
+.checkout button {
+  padding: 10px 20px;
+  
 }

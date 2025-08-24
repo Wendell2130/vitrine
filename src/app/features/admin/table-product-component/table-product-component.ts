@@ -13,6 +13,8 @@ export class TableProductComponent {
   productsService = inject(ProductService);
   router = inject(Router);
 
+  
+
   editProduct(id: number) {
       this.router.navigate(['/admin/edit', id]);
   

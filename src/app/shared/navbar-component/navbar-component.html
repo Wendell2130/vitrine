@@ -1,9 +1,16 @@
 <nav>
     <div class="line-one">
         <span>Vitrine E-Commerce</span>
-           <span>{{authService.currentUser()?.name?.firstname}}</span>
          @if(authService.isLoggedIn()){
-        <a routerLink="admin"><i class="material-icons">manage_accounts</i></a>
+        <p class="user-info">
+              <i class="material-icons">person</i> <span>{{authService.currentUser()?.name?.firstname || '' | captalize}}</span>
+        </p>
+         
+        
+            @if(authService.isAmin()){
+                 <a routerLink="admin"><i class="material-icons">manage_accounts</i></a>
+            }
+       
         <a routerLink="cart"><i class="material-icons">shopping_cart</i></a>
         <a routerLink="login" (click)="logout()"><i class="material-icons">logout</i></a>
         }@else{

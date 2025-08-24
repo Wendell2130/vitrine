@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import {  inject, Injectable, signal } from '@angular/core';
+import {  effect, inject, Injectable, signal } from '@angular/core';
 import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 import { Icart } from '../../models/cart-interface';
 
 import { Iproduct } from '../../models/product-interface';
 import { CartView } from '../../models/cart-view-intercface';
+import { AuthService } from './auth-service';
 
 const URL = 'https://fakestoreapi.com/';
 @Injectable({
@@ -13,11 +14,17 @@ const URL = 'https://fakestoreapi.com/';
 export class CartService {
 
   private _http = inject(HttpClient);
-  private _currentCart = signal<Icart | null>(null);
-  public currentCart = this._currentCart.asReadonly();
+  private _authService = inject(AuthService);
+  
   public productsInCart = signal<Iproduct[]>([]);
-  
-  
+
+  constructor(){
+    effect(()=>{
+      this._authService.isLoggedIn();
+      this.productsInCart.set([]);
+    });
+  }
+ 
    //histórico de compras
   getCartsViewByIdUser(userId: number): Observable<CartView[] | null> {
     return this._http.get<CartView[]>(URL + 'carts/user/' + userId).pipe(
@@ -34,7 +41,7 @@ export class CartService {
               }))
             )
           );
-
+         
           return forkJoin(productDetails$).pipe(
             map(products => ({
               ...cart,

@@ -23,7 +23,5 @@ export class ProductListComponent {
     this.filteredProducts=computed(()=>
       this.productService.products().
     filter(product => product.title.toLowerCase().includes(term.toLowerCase())))
-    
-    
   }
 }

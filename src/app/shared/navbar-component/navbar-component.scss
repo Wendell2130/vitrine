@@ -14,7 +14,12 @@ nav {
   .line-one {
     justify-content: space-between;
     border-bottom: 1px solid rgba(255,255,255,0.15);
-
+    .user-info{
+      display: flex;
+      align-items: center;
+      
+      
+    }
     span:first-child {
       font-weight: bold;
       font-size: 1.2rem;

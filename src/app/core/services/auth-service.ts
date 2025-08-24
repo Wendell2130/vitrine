@@ -11,9 +11,11 @@ const URL_USERS = "https://fakestoreapi.com/users";
 export class AuthService {
   private _currentUser = signal<Iuser | null>(null);
   private _isLoggedIn = signal(false);
+  private _isAmin = signal(false);
+  public isAmin = this._isAmin.asReadonly();
   public currentUser = this._currentUser.asReadonly();
   public isLoggedIn = this._isLoggedIn.asReadonly();
-
+  
   private _router = inject(Router)
   private _http = inject(HttpClient);
 
@@ -30,6 +32,11 @@ export class AuthService {
           return of(null);
         }
         this._currentUser.set(user);
+        if(user.id===1){
+          this._isAmin.set(true);
+        } else{
+          this._isAmin.set(false);
+        }
         // POST Faz o login para pegar o token
         return this._http.post<{ token: string }>(URL_TOKEN, { username, password }).
           pipe(
@@ -47,6 +54,7 @@ export class AuthService {
             }), catchError((error) => {
               alert('Usuário ou senha não recohecido(s)');
               this._isLoggedIn.set(false);
+                this._isAmin.set(false);
               localStorage.removeItem("userToken");
               return of(null);
             }))
