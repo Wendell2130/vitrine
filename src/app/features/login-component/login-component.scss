@@ -47,12 +47,6 @@ button:disabled {
   background-color: #9c2828;
 }
 
-
-
-
-
-
-
 .container {
   padding: 16px;
 }
@@ -63,6 +57,29 @@ span.psw {
   padding-top: 16px;
 }
 
+ table {
+            width: 100%;
+            max-width: 500px;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        tr:hover {
+            background-color: #f1f8ff;
+        }
+        .password-cell {
+            font-family: monospace;
+        }
 
 @media screen and (max-width: 300px) {
   span.psw {

@@ -85,4 +85,19 @@
       margin-right: 0.2em;
     }
   }
+  button[type="button"]{
+     background: linear-gradient(90deg, #0569ec 0%, #4f81ee 100%);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+    transition: background 0.2s, transform 0.2s;
+  }
 }

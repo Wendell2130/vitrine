@@ -12,6 +12,7 @@ export class ProductService {
   private _http=inject(HttpClient);
   private _products=signal<Iproduct[]>([]);
   public products=this._products.asReadonly();
+
   constructor() { 
     this.getProducts();
   }
@@ -29,6 +30,29 @@ export class ProductService {
     return this._http.get<Iproduct>(URL+idProduct).pipe(map((product)=>{
 
       return product.title;
+    }));
+  }
+  public createProduct(product:Iproduct):Observable<Iproduct>{
+    return this._http.post<Iproduct>(URL,product).pipe(tap((newProduct)=>{
+      this._products.update((products)=>{
+        return [...products, newProduct];
+      });
+    }));
+  }
+  public updateProduct(id:number, product:Iproduct):Observable<Iproduct>{
+    return this._http.patch<Iproduct>(URL+id,product).pipe(tap((updatedProduct)=>{
+      this._products.update((products)=>{
+        const index=products.findIndex((p)=>p.id===updatedProduct.id);
+        products[index]=updatedProduct;
+        return [...products];
+      })
+    }));
+  }
+  removeProduct(id:number):Observable<any>{
+    return this._http.delete(URL+id).pipe(tap(()=>{
+      this._products.update((products)=>{
+        return products.filter((p)=>p.id!==id);
+      });
     }));
   }
   

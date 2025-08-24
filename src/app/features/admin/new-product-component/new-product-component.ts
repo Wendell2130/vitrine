@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../../core/services/product-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-product-component',
@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class NewProductComponent {
 productForm: FormGroup;
 route=inject(ActivatedRoute);
+router=inject(Router);
  mode='create';
 
   constructor(private fb: FormBuilder, private productService: ProductService) {
@@ -42,18 +43,28 @@ route=inject(ActivatedRoute);
       });
     }
   }
+  
   submit() {
-    alert('Funcionalidade de criação de produto não implementada.');
-    console.log(this.productForm.value);
-  //   if (this.productForm.valid) {
-  //     const product = this.productForm.value;
-  //     this.productService.createProduct(product).subscribe({
-  //       next: () => {
-  //         alert('Produto cadastrado com sucesso!');
-  //         this.productForm.reset({ id: 0, price: 0.1, image: 'http://example.com' });
-  //       },
-  //       error: () => alert('Erro ao cadastrar produto!')
-  //     });
-  //   }
+    if(this.mode === 'create') {
+     
+      this.productService.createProduct(this.productForm.value).subscribe(()=>{
+        alert('Produto cadastrado com sucesso!');
+      })
+      this.productForm.reset({ title: '', price: 0, description: '', category: '', image: 'http://example.com' });
+    }
+    else if(this.mode === 'edit') {
+     
+      this.productService.updateProduct(this.route.snapshot.paramMap.get('id') as unknown as number,
+       this.productForm.value).subscribe(()=>{
+        alert('Produto atualizado com sucesso!');
+         this.productForm.reset({ title: '', price: 0, description: '', category: '', image: 'http://example.com' });
+         this.goBack();
+       });
+     
+    }
+    
    }
+   goBack() {
+    this.router.navigate(['/admin/table']);
+  }
 }

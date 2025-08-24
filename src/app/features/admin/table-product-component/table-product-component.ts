@@ -15,10 +15,22 @@ export class TableProductComponent {
 
   editProduct(id: number) {
       this.router.navigate(['/admin/edit', id]);
-  alert('Edit product with ID: ' + id);
+  
   }
-  deleteProduct(arg0: number) {
-    throw new Error('Method not implemented.');
+
+  deleteProduct(id: number) {
+    const confirmDelete = confirm('Deseja Realmente Excluir o Produto?');
+    if (confirmDelete) {
+      this.productsService.removeProduct(id).subscribe({
+        next: () => {
+          alert('Produto excluído com sucesso!');
+        },
+        error: () => {
+          alert('Erro ao excluir produto!');
+        }
+      });
+    }
+    
   }
 
 
