@@ -23,8 +23,12 @@ export class CartService {
       this._authService.isLoggedIn();
       this.productsInCart.set([]);
     });
+    effect(()=>console.log(this.productsInCart()));
   }
- 
+
+  getTotalItensInCart():number{
+    return this.productsInCart().reduce((sum, product) => sum + (product.quantity ?? 1), 0);
+  }
    //histórico de compras
   getCartsViewByIdUser(userId: number): Observable<CartView[] | null> {
     return this._http.get<CartView[]>(URL + 'carts/user/' + userId).pipe(

@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { Iproduct } from '../../models/product-interface';
 import { ProductService } from '../../core/services/product-service';
-import { Observable, of } from 'rxjs';
+
 
 @Component({
   selector: 'app-product-list-component',

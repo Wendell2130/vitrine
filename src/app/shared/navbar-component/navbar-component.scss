@@ -4,7 +4,8 @@ nav {
   font-family: 'Segoe UI', Arial, sans-serif;
   box-shadow: 0 2px 8px rgba(44, 62, 80, 0.1);
 
-  .line-one, .line-two {
+  .line-one,
+  .line-two {
     display: flex;
     align-items: center;
     padding: 0.75rem 2rem;
@@ -13,13 +14,36 @@ nav {
 
   .line-one {
     justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-    .user-info{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    .user-info {
       display: flex;
       align-items: center;
-      
-      
     }
+
+    a[routerLink="cart"] {
+      position: relative;
+      display: inline-block;
+
+      .material-icons {
+        font-size: 1.5rem;
+      }
+
+      .badge {
+        position: absolute;
+        top: -6px;
+        right: -10px;
+        background: #e74c3c;
+        color: #fff;
+        border-radius: 50%;
+        padding: 2px 7px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        box-shadow: 0 1px 4px rgba(44, 62, 80, 0.15);
+      }
+    }
+
+
     span:first-child {
       font-weight: bold;
       font-size: 1.2rem;
@@ -41,7 +65,7 @@ nav {
       font-size: 1rem;
 
       &:hover {
-        background: rgba(255,255,255,0.12);
+        background: rgba(255, 255, 255, 0.12);
       }
     }
   }

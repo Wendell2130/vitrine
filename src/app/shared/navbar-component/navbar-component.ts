@@ -1,5 +1,6 @@
 import { Component, inject, } from '@angular/core';
 import { AuthService } from '../../core/services/auth-service';
+import { CartService } from '../../core/services/cart-service';
 
 @Component({
   selector: 'app-navbar-component',
@@ -9,7 +10,7 @@ import { AuthService } from '../../core/services/auth-service';
 })
 export class NavbarComponent {
   public authService=inject(AuthService);
-  
+  public cartService=inject(CartService);
   logout(){
     this.authService.logout();
   }
