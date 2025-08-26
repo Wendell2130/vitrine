@@ -37,6 +37,7 @@ export class CartService {
       const newCart = { id:11,userId: userId, products: this.productsInCart() };
        this._http.post(URL + 'carts/', newCart).subscribe(()=>{
         alert('Carrinho enviado com sucesso! Requisição efetuada na API');
+        this.productsInCart.set([]); 
        });
 
       }else{

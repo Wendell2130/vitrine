@@ -1,3 +1,4 @@
+import { Iproduct } from "./product-interface"
 
 export interface Icart {
   id: number
@@ -5,12 +6,4 @@ export interface Icart {
   products: Iproduct[]
 }
 
-export interface Iproduct {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: string
-  image: string
-  quantity?: number
-}
+

@@ -1,20 +1,31 @@
 <div class="container">
     @if(product){
-        <div class="image">
-        <img [src]="product.image" >
+    <div class="image">
+        <img [src]="product.image">
     </div>
     <div class="content">
         <h2>{{product.title |captalize}}</h2> <br>
         <p>{{product.category | captalize}}</p> <br>
-        <p>{{product.description}}</p> <br>
-        <p>R$ {{product.price}}</p> <br>
-        
+        <p>{{product.description}}</p> 
+        <div class="container-stars">
+            @for(n of getArrayFromNumber(product.rating?.rate??0);track $index){
+            <span class="material-icons stars">star</span>
+            }
+            @if(halfStar){
+            <span class="material-icons stars">star_half</span>
+            }
+            
+        </div>
+         <span>{{product.rating?.count}} Avaliações</span> <br>
+
+        <p><strong>R$ {{product.price}}</strong></p> <br>
+
         <p><button (click)="addToCart()">Adicionar <i class="material-icons">add_shopping_cart</i></button></p>
         <p><button class="btn-back" (click)="goBack()"> <i class="material-icons">reply</i> Voltar</button></p>
     </div>
     }@else{
-        <p>Carregando...</p>
+    <p>Carregando...</p>
     }
-    
+
 
 </div>
