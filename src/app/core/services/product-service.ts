@@ -11,15 +11,29 @@ export class ProductService {
 
   private _http=inject(HttpClient);
   private _products=signal<Iproduct[]>([]);
+  public filteredProducts=signal<Iproduct[]>([]);
   public products=this._products.asReadonly();
 
   constructor() { 
     this.getProducts().subscribe();
   }
 
+  filterProductsByTerm(term:string){
+    const lowerTerm=term.toLowerCase();
+   
+     var filtered=this._products().filter((product)=>
+      product.title.toLowerCase().includes(lowerTerm) ||
+      product.category.toLowerCase().includes(lowerTerm) ||
+      product.price.toString().toLowerCase().includes(lowerTerm)
+    );
+
+    this.filteredProducts.set(filtered);
+  }
+
   public getProducts():Observable<any[]>{
     return this._http.get<Iproduct[]>(URL).pipe(tap((products)=>{
       this._products.set(products);
+      this.filteredProducts.set(products);
       console.log(this._products());
     }));
   }
@@ -35,7 +49,9 @@ export class ProductService {
   public createProduct(product:Iproduct):Observable<Iproduct>{
     return this._http.post<Iproduct>(URL,product).pipe(tap((newProduct)=>{
       this._products.update((products)=>{
-        return [...products, newProduct];
+        const newArrayProducts=[...products, newProduct]
+        this.filteredProducts.set(newArrayProducts);
+        return newArrayProducts;
       });
     }));
   }
@@ -44,6 +60,7 @@ export class ProductService {
       this._products.update((products)=>{
         const index=products.findIndex((p)=>p.id===updatedProduct.id);
         products[index]=updatedProduct;
+        this.filteredProducts.set(products);
         return [...products];
       })
     }));
@@ -51,7 +68,9 @@ export class ProductService {
   removeProduct(id:number):Observable<any>{
     return this._http.delete(URL+id).pipe(tap(()=>{
       this._products.update((products)=>{
-        return products.filter((p)=>p.id!==id);
+        const newArrayProducts= products.filter((p)=>p.id!==id);
+        this.filteredProducts.set(newArrayProducts);
+        return newArrayProducts;
       });
     }));
   }

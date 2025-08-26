@@ -15,21 +15,40 @@ export class CartService {
 
   private _http = inject(HttpClient);
   private _authService = inject(AuthService);
-  
-  public productsInCart = signal<Iproduct[]>([]);
+    public productsInCart = signal<Iproduct[]>([]);
 
   constructor(){
+    //efeito colateral para resetar o atual carrinho na troca de usuário
     effect(()=>{
       this._authService.isLoggedIn();
-      this.productsInCart.set([]);
+      this.productsInCart.set([]); 
     });
    
   }
 
   getTotalItensInCart():number{
-    return this.productsInCart().reduce((sum, product) => sum + (product.quantity ?? 1), 0);
+    return this.productsInCart().reduce((sum, product) => 
+      sum + (product.quantity ?? 1), 0);
   }
-   //histórico de compras
+  sendCartToApi(){
+    if(this._authService.currentUser()?.id){
+      if(this.productsInCart().length>=1){
+      const userId = this._authService.currentUser()?.id;
+      const newCart = { id:11,userId: userId, products: this.productsInCart() };
+       this._http.post(URL + 'carts/', newCart).subscribe(()=>{
+        alert('Carrinho enviado com sucesso! Requisição efetuada na API');
+       });
+
+      }else{
+        alert('Carrinho Vazio!');
+        return;
+      }
+    }
+    
+    const cart = this.productsInCart();
+    
+  }
+   //monta objeto CartView com histórico de compras
   getCartsViewByIdUser(userId: number): Observable<CartView[] | null> {
     return this._http.get<CartView[]>(URL + 'carts/user/' + userId).pipe(
       switchMap(carts => {

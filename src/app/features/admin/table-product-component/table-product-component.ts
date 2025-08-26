@@ -17,20 +17,20 @@ export class TableProductComponent {
 
   ngOnInit(): void {
     this.filteredProducts=computed(()=> //não muda o array original e usa sort
-      [...this.productsService.products()].sort((a,b)=>a.title.localeCompare(b.title)));
+      [...this.productsService.filteredProducts()].sort((a,b)=>a.title.localeCompare(b.title)));
   }
   
   filterPerCategory(){
     this.filteredProducts=computed(()=> //não muda o array original e usa sort
-      [...this.productsService.products()].sort((a,b)=>a.category.localeCompare(b.category)));
+      [...this.productsService.filteredProducts()].sort((a,b)=>a.category.localeCompare(b.category)));
   }
     filterPerPrice(){
     this.filteredProducts=computed(()=> //não muda o array original e usa sort
-      [...this.productsService.products()].sort((a, b) => a.price - b.price));
+      [...this.productsService.filteredProducts()].sort((a, b) => a.price - b.price));
   }
     filterPerName(){
     this.filteredProducts=computed(()=> //não muda o array original e usa sort
-      [...this.productsService.products()].sort((a,b)=>a.title.localeCompare(b.title)));
+      [...this.productsService.filteredProducts()].sort((a,b)=>a.title.localeCompare(b.title)));
   }
 
   editProduct(id: number) {

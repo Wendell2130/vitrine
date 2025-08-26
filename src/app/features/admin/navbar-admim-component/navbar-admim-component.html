@@ -1,7 +1,7 @@
 <nav class="admin-navbar">
   <span class="logo">Area Admin</span>
   <div class="add-product">
-    <input type="text" placeholder="Nome do produto" [(ngModel)]="productName">
+    <input type="text" placeholder="Nome do produto" (keyup)="onFilter($event)" />
     <button routerLink='table' class="table">
       <i class="material-icons">table_chart</i> Tabela
     </button>

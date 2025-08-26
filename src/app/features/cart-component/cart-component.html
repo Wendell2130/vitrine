@@ -23,7 +23,7 @@
    </div>
    @if(cartService.productsInCart().length > 0){
     <div class="checkout">
-    <button >Finalizar Compra</button>
+    <button (click)="cartService.sendCartToApi()">Finalizar Compra</button>
    </div>
    }
    
