@@ -23,7 +23,7 @@ export class CartService {
       this._authService.isLoggedIn();
       this.productsInCart.set([]);
     });
-    effect(()=>console.log(this.productsInCart()));
+   
   }
 
   getTotalItensInCart():number{
