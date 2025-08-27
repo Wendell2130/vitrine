@@ -4,5 +4,5 @@
   <h1 class="title">{{title.slice(0,25)}}</h1> 
   <p class="price">R${{price}}</p> 
   <p class="description">{{description.slice(0,60)}}...</p> 
-  <p><button class="btn"(click)="goToProduct(id)">Ver</button></p>
+  <p><button class="btn"(click)="goToProduct(id)">{{ 'app.see' | translate }}</button></p>
 </div>

@@ -16,15 +16,15 @@
             }
             
         </div>
-         <span>{{product.rating?.count}} Avaliações</span> <br>
+         <span>{{product.rating?.count}} {{ 'app.reviews' | translate }}</span> <br>
 
         <p><strong>R$ {{product.price}}</strong></p> <br>
 
-        <p><button (click)="addToCart()">Adicionar <i class="material-icons">add_shopping_cart</i></button></p>
-        <p><button class="btn-back" (click)="goBack()"> <i class="material-icons">reply</i> Voltar</button></p>
+        <p><button (click)="addToCart()">{{ 'app.add' | translate }} <i class="material-icons">add_shopping_cart</i></button></p>
+        <p><button class="btn-back" (click)="goBack()"> <i class="material-icons">reply</i> {{ 'app.back' | translate }}</button></p>
     </div>
     }@else{
-    <p>Carregando...</p>
+    <p>{{ 'app.loading' | translate }}</p>
     }
 
 

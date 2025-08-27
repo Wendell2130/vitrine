@@ -16,6 +16,7 @@ import { DatestrPipe } from './shared/pipes/datestr-pipe';
 import { Footer } from './features/footer/footer';
 import { About } from './features/about/about';
 import { CaptalizePipe } from './shared/pipes/captalize-pipe';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,16 @@ import { CaptalizePipe } from './shared/pipes/captalize-pipe';
     DatestrPipe,
     Footer,
     About,
-    CaptalizePipe
+    CaptalizePipe,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+            fallbackLang: 'en'
+        })
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

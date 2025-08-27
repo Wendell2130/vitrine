@@ -1,11 +1,13 @@
 <div class="cart-container">
-  
-  <div class="cart-title">Carrinho Atual</div>
+
+  <div class="cart-title">{{ 'app.current_cart' | translate }}</div>
   @for(product of cartService.productsInCart();track product.id){
     <div class="product-item">
       <div class="product-info">
         <img [src]="product.image" alt="{{product.title}}" >
-           {{product.title.slice(0,10)}}... Quantidade:<strong> {{product.quantity}}</strong> Unidade:<strong>R$ {{product.price}}</strong>
+           {{product.title.slice(0,10)}}... {{ 'app.quantity' | translate }}:
+           <strong> {{product.quantity}}</strong> {{ 'app.unit' | translate }}:<strong>
+            R$ {{product.price}}</strong>
       </div>
       <div class="actions">
         <button class="add" (click)="addOne(product.id)"><i class="material-icons">add</i></button>
@@ -16,25 +18,25 @@
        
     </div>
   }@empty {
-    <div class="empty-cart">Nenhum produto no carrinho.</div>
+    <div class="empty-cart">{{ 'app.void' | translate }}</div>
   }
   <div class="cart-total">
    Total: R$ {{cartActualTotal}} 
    </div>
    @if(cartService.productsInCart().length > 0){
     <div class="checkout">
-    <button (click)="cartService.sendCartToApi()">Finalizar Compra</button>
+    <button (click)="cartService.sendCartToApi()">{{ 'app.checkout' | translate }}</button>
    </div>
    }
    
   
   <hr> <br>
 
-  <div class="cart-title">Histórico de Compras</div>
+  <div class="cart-title">{{ 'app.purchase_history' | translate }}</div>
 
   @for(cart of cartsView$ | async ;track cart.id; let i = $index){
-    <div class="cart-date">Data: {{cart.date | datestr}}</div>
-   
+    <div class="cart-date">{{ 'app.date' | translate }}: {{cart.date | datestr}}</div>
+
     @for(product of cart.products;track product.productId){
       <div class="product-item">
         <div class="product-info">
@@ -42,13 +44,13 @@
           <img [src]="product.image" alt="{{product.title}}" >
         </div>
         <div class="product-info">
-          <span>Nome:</span> {{product.title}}
+          <span>{{ 'app.name' | translate }}:</span> {{product.title}}
         </div>
         <div class="product-info">
-          <span>Quantidade:</span> {{product.quantity}}
+          <span>{{ 'app.quantity' | translate }}:</span> {{product.quantity}}
         </div>
         <div class="product-info">
-          <span>Preço:</span> R$ {{product.price}}
+          <span>{{ 'app.price' | translate }}:</span> R$ {{product.price}}
         </div>
         <div class="product-total">
           Total: R$ {{product.price * product.quantity}}
@@ -56,10 +58,10 @@
         </div>
       </div>
     }@empty {
-      <div class="empty-cart">Carregando.</div>
+      <div class="empty-cart">{{ 'app.loading' | translate }}</div>
     }
     <div class="cart-total" >
-     Total da Compra: R$ {{getCartProductsTotal(cart).toFixed(2)}}
+     Total: R$ {{getCartProductsTotal(cart).toFixed(2)}}
    </div>
    <hr>
    

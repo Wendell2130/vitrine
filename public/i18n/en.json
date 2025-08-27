@@ -1,0 +1,22 @@
+{
+  "app": {
+    "product": "Products",
+    "about": "About",
+    "see": "View",
+    "user": "User",
+    "password": "Password",
+    "reviews": "Reviews",
+    "add": "Add to Cart",
+    "back": "Back",
+    "loading": "Loading...",
+    "rights": "All rights reserved.",
+    "current_cart": "Current Cart",
+    "purchase_history": "Purchase History",
+    "checkout": "Checkout",
+    "quantity": "Quantity",
+    "name": "Name",
+    "price": "Price",
+    "void": "Void",
+    "date": "Date"
+  }
+}

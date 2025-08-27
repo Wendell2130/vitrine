@@ -18,9 +18,13 @@
         }
     </div>
     <div class="line-two">
-        <a routerLink="home">Produtos</a>
-        <a routerLink="/about">Sobre</a>
-        
+        <a routerLink="home">{{ 'app.product' | translate }}</a>
+        <a routerLink="/about">{{ 'app.about' | translate }}</a>
+        <div>
+            Lang:
+            <a (click)="language('pt')">PT</a>/
+            <a (click)="language('en')">EN</a>
+        </div>
 
 
        
